@@ -65,7 +65,7 @@ public class ControllerPatientCreate {
             /*
              * insert to patient table
              */
-            String patientSql = "INSERT INTO Patient (doctor_id, ssc_num, first_name, last_name, birth_date, street, city, state, zip_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String patientSql = "INSERT INTO Patient (doctor_id, ssn, first_name, last_name, dob, street, city, state, zipcode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement patientStmt = conn.prepareStatement(patientSql,
                     PreparedStatement.RETURN_GENERATED_KEYS);
             patientStmt.setInt(1, p.getDoctor_id());
@@ -125,11 +125,13 @@ public class ControllerPatientCreate {
 
             if (rs.next()) {
                 p.setFirst_name(rs.getString("first_name"));
-                p.setBirthdate(rs.getDate("birth_date").toString());
+                p.setLast_name(rs.getString("last_name"));
+                p.setBirthdate(rs.getDate("DOB").toString());
                 p.setStreet(rs.getString("street"));
                 p.setCity(rs.getString("city"));
                 p.setState(rs.getString("state"));
-                p.setZipcode(rs.getString("zip_code"));
+                p.setZipcode(rs.getString("zipcode"));
+                p.setDoctor_id(rs.getInt("doctor_id"));
                 p.setPrimaryName(rs.getString("doctor_last_name"));
 
                 model.addAttribute("patient", p);
