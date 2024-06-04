@@ -15,7 +15,7 @@ public class PatientView {
     private String state;
     private String zipcode;
     private String primaryName;
-	private int doctor_id;
+    private int doctor_id;
 
 
     public int getId() {
@@ -98,15 +98,15 @@ public class PatientView {
         this.primaryName = primaryName;
     }
 
-	public int getDoctor_id() {
-		return doctor_id;
-	}
+    public int getDoctor_id() {
+        return doctor_id;
+    }
 
-	public void setDoctor_id(int doctor_id) {
-		this.doctor_id = doctor_id;
-	}
+    public void setDoctor_id(int doctor_id) {
+        this.doctor_id = doctor_id;
+    }
 
-	@Override
+    @Override
     public String toString() {
         return "Patient [id=" + id + ", last_name=" + last_name + ", first_name=" + first_name + ", birthdate=" + birthdate
                 + ", ssn=" + ssn + ", street=" + street + ", city=" + city + ", state=" + state + ", zipcode=" + zipcode
