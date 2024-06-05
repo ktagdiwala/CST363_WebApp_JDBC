@@ -64,7 +64,7 @@ public class ControllerPrescriptionCreate {
             }
 
             // Validate drug name
-            String drugSql = "SELECT drug_id FROM Drug WHERE name = ?";
+            String drugSql = "SELECT * FROM Drug WHERE name = ?";
             PreparedStatement drugStmt = conn.prepareStatement(drugSql);
             drugStmt.setString(1, p.getDrugName());
             ResultSet rsDrug = drugStmt.executeQuery();
@@ -75,22 +75,25 @@ public class ControllerPrescriptionCreate {
                 return "prescription_create";
             }
 
-            int drugId = rsDrug.getInt("drug_id");
+            p.setDrug_id(rsDrug.getInt("drug_id"));
+            p.setDrugName(rsDrug.getString("name"));
 
             // Insert prescription
             String prescriptionSql = "INSERT INTO Prescription (patient_id, doctor_id, drug_id, date_prescribed, refills, quantity) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement prescriptionStmt = conn.prepareStatement(prescriptionSql, PreparedStatement.RETURN_GENERATED_KEYS);
             prescriptionStmt.setInt(1, p.getPatient_id());
             prescriptionStmt.setInt(2, p.getDoctor_id());
-            prescriptionStmt.setInt(3, drugId);
+            prescriptionStmt.setInt(3, p.getDrug_id());
             prescriptionStmt.setDate(4, java.sql.Date.valueOf(LocalDate.now()));
             prescriptionStmt.setInt(5, p.getRefills());
             prescriptionStmt.setInt(6, p.getQuantity());
             prescriptionStmt.executeUpdate();
 
+            p.setRefillsRemaining(p.getRefills());
+
             ResultSet generatedKeys = prescriptionStmt.getGeneratedKeys();
             if (generatedKeys.next()) {
-                p.setDrugName(generatedKeys.getString(1));
+                p.setRxid(generatedKeys.getInt(1));
             }
 
             model.addAttribute("message", "Prescription created.");
