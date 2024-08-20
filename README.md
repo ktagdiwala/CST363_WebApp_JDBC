@@ -1,4 +1,8 @@
-This database and web application is designed for a pharmacy company to record and maintain information regarding prescriptions for patients. This database contains data about patients and doctors, prescriptions, prescription refills, drug prices, and a drug inventory. The database uses Java, Spring Boot, Mysql, and Maven. The goal is to provide accurate prescription management, including: creation, validation, filling, and tracking across different pharmacies. The design maintains referential integrity across doctors, patients, and drugs. The program also tracks prescription refills and pricing.  The entities and relationships in this database include:
+# JDBC Web App for Pharmacy Company
+
+Lab Document: https://docs.google.com/document/d/1f_l_J3wRkoy7R4G60UKpOjWaSU0Ab3QqBIqlv9sQZf8/edit?usp=sharing
+
+**Description:** This database and web application is designed for a pharmacy company to record and maintain information regarding prescriptions for patients. This database contains data about patients and doctors, prescriptions, prescription refills, drug prices, and a drug inventory. The database uses Java, Spring Boot, Mysql, and Maven. The goal is to provide accurate prescription management, including: creation, validation, filling, and tracking across different pharmacies. The design maintains referential integrity across doctors, patients, and drugs. The program also tracks prescription refills and pricing.  The entities and relationships in this database include:
 
 - **Doctor:** Stores information about doctors, including SSN, last name, first name, specialty, and their first year of practice.
 
